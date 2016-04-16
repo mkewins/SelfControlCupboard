@@ -1,5 +1,6 @@
 // Firebase Reference
 var metricRef = new Firebase('https://snackattack.firebaseio.com/metrics');
+var deviceRef = new Firebase('https://snackattack.firebaseio.com/devices');
 
 var calField = $('#calInput');
 var stepField = $('#stepInput');
@@ -52,6 +53,17 @@ $(document).ready( function() {
     $('#calories-container').show();
     $('#steps-container').hide();
   });
+
+  // Highlight the active device
+  deviceRef.once("value", function(data) {
+    var activeDevice = '#' + data.child('activeDevice').val();
+    $(activeDevice).parent().addClass("active");
+  });
+});
+
+
+$( ".changeDevice" ).click(function() {
+  deviceRef.child('activeDevice').set($(this).find('input').attr('id'));  
 });
 
 function showCalories(){
@@ -66,4 +78,8 @@ function showSteps(){
   $('#calories-container').hide();
   // set active metric to steps
     metricRef.child('activeMetric').set("steps", onComplete);
+}
+
+function changeActiveDevice() {
+
 }
