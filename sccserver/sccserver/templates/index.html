@@ -3,24 +3,30 @@
   <head>
     <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   </head>
   <body>
 
     <div id="fitbit-login">
+      <h1>Integrate with FitBit</h1>
       <input type='button' id='fitbitBtn' value='Login with Fitbit'>
     </div>
 
     <div id="input-container">
-      <p>Set New Goal</p>
+      <h1>Set New Goal</h1>
       <input type='number' id='calInput' placeholder='Calories'>
       <input type='number' id='stepInput' placeholder='Steps'>
     </div>
 
     <div id="output-container">
-      <p>Current Goal</p>
+      <h1>Current Goal</h1>
       <p id="calCur"></p>
       <p id="stepCur"></p>
+    </div>
+
+    <div id="devices">
+      <h1>Active Devices</h1>
     </div>
 
       <script>
