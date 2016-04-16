@@ -1,7 +1,7 @@
 from sccserver import app
 import fitbit, pprint
 from scripts.secrets import *
-from flask import redirect, request
+from flask import redirect, request, render_template, url_for
 
 oauth = fitbit.FitbitOauth2Client(CLIENT_ID, CLIENT_SECRET)
 redirect_uri = 'http://localhost:1738/auth/callback'
@@ -11,7 +11,8 @@ client = None
 
 @app.route('/')
 def index():
-    return "Hello world! <a href='/auth'>Login</a>"
+    # return "Hello world! <a href='/auth'>Login</a>"
+    return render_template('index.html')
 
 @app.route('/auth')
 def auth():
@@ -29,5 +30,10 @@ def auth_callback():
     access_token = oauth.token['access_token']
     refresh_token = oauth.token['refresh_token']
     client = fitbit.Fitbit(CLIENT_ID, CLIENT_SECRET, access_token=access_token)
-    return 'Success'
+    return """
+        Success. <a href='/'>Redirecting to home...</a>
+        <script>
+        window.location.href = '/';
+        </script>
+        """
 
