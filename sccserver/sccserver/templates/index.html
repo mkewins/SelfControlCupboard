@@ -3,13 +3,19 @@
   {% include 'head.html' %}
   <body>
     {% if not client %}
-    <div id="fitbit-login">
+    <div id="fitbit-login" class="jumbotron text-center">
+      <h1>Self-Control Cupboard</h1>
+      <p class="lead">Resist your snack attack! Burn 3000 calories or walk 10000 steps if you wanna eat tonight &#x1F609;</p>
       <a href='/auth'>
-        <button type='button'>Login with Fitbit</button>
+        <button type='button'><h2>Login with Fitbit</h2></button>
       </a>
     </div>
-    {% endif %}
-
+    {% else %}
+    <div id="input-container">
+      <h1>Set New Goal</h1>
+      <input type='number' id='calInput' placeholder='Calories'>
+      <input type='number' id='stepInput' placeholder='Steps'>
+    </div>
     <div id="metrics">
 
       <h1>Metrics</h1>
@@ -46,7 +52,9 @@
     <div id="devices">
       <h1>Active Devices</h1>
     </div>
-
+    {% endif %}
   </body>
+  {% if client %}
   <script src={{url_for('static', filename='script.js')}}></script>
+  {% endif %}
 </html>
