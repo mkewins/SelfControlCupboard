@@ -4,7 +4,7 @@ from scripts.secrets import *
 from flask import redirect, request, render_template, url_for
 
 oauth = fitbit.FitbitOauth2Client(CLIENT_ID, CLIENT_SECRET)
-redirect_uri = 'http://0.0.0.0:1738/auth/callback'
+redirect_path = '/auth/callback'
 access_token = None
 refresh_token = None
 client = None
@@ -16,14 +16,14 @@ def index():
 
 @app.route('/auth')
 def auth():
-    redirect_url = oauth.authorize_token_url(redirect_uri=redirect_uri)[0]
+    redirect_url = oauth.authorize_token_url(redirect_uri='http://'+request.host+redirect_path)[0]
     return redirect(redirect_url)
 
 @app.route('/auth/callback')
 def auth_callback():
     code = request.args.get('code')
     state = request.args.get('state')
-    results = oauth.fetch_access_token(code, redirect_uri)
+    results = oauth.fetch_access_token(code, 'http://'+request.host+redirect_path)
     global access_token
     global refresh_token
     global client
