@@ -3,11 +3,11 @@
   {% include 'head.html' %}
   <body>
     {% if not client %}
-    <div id="fitbit-login" class="jumbotron text-center">
-      <h1>Self-Control Cupboard</h1>
-      <p class="lead">Resist your snack attack! Burn 3000 calories or walk 10000 steps if you wanna eat tonight &#x1F609;</p>
+    <div id="fitbit-login" class="text-center splash-content">
+      <h1 class="main-title">SNACKATTACK</h1>
+      <p class="sub-title">The Self Control Kitchen Cupboard</p>
       <a href='/auth'>
-        <button type='button'><h2>Login with Fitbit</h2></button>
+        <button type='button'>Login with Fitbit</button>
       </a>
     </div>
     {% else %}

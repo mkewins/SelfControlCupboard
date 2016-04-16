@@ -1,0 +1,55 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url(kitchen-bg.png);
+  background-repeat: no-repeat;;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  background-color: #fff;
+  height: 100%;
+  font-family: 'Lato', sans-serif !important;
+
+}
+
+.splash-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.main-title {
+  font-size: 10vw;
+  margin-bottom: 0;
+}
+
+.sub-title {
+  font-size: 3vw;
+  margin-top: 0;
+}
+
+button {
+  background-color: #F8EFF0;
+  border-radius: 12px;
+  font-size: 21px !important;
+  padding: 7px !important;
+  color: black !important;
+  border: none;
+  -moz-box-shadow:    3px 3px #ccc;
+  -webkit-box-shadow: 3px 3px #ccc;
+  box-shadow:         3px 3px #ccc;
+}
+
+button:focus { outline:none }
+
+button:hover {
+  background-color: #D8D8D8;
+  -moz-box-shadow:    1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px #ccc;
+  box-shadow:         1px 1px #ccc;
+}
