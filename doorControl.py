@@ -17,7 +17,7 @@ try:
         lockDoor()
 	time.sleep(1.5)                   #continues for a half a second
         unlockDoor()
-	time.sleep(2.5)                   #continues for a half a second
+	time.sleep(10.5)                   #continues for a half a second
 except KeyboardInterrupt:
     p.stop()
     GPIO.cleanup()

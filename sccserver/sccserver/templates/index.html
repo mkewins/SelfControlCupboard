@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  {% include 'head.html' %}
+  <body>
+    {% if not client %}
+    <div id="fitbit-login" class="jumbotron text-center">
+      <h1>Self-Control Cupboard</h1>
+      <p class="lead">Resist your snack attack! Burn 3000 calories or walk 10000 steps if you wanna eat tonight &#x1F609;</p>
+      <a href='/auth'>
+        <button type='button'><h2>Login with Fitbit</h2></button>
+      </a>
+    </div>
+    {% else %}
+    <div id="input-container">
+      <h1>Set New Goal</h1>
+      <input type='number' id='calInput' placeholder='Calories'>
+      <input type='number' id='stepInput' placeholder='Steps'>
+    </div>
+    <div id="metrics">
+
+      <h1>Metrics</h1>
+
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Metric
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li onclick="showCalories()"><a href="#">Calories</a></li>
+            <li onclick="showSteps()"><a href="#">Steps</a></li>
+          </ul>
+      </div>
+
+      <div id="calories-container">
+        <div>
+          <input type='number' id='calInput' placeholder='Calories'>
+        </div>
+        <div>
+          <p id="calCur"></p>
+        </div>
+      </div>
+
+      <div id="steps-container">
+        <div>
+          <input type='number' id='stepInput' placeholder='Steps'>
+        </div>
+        <div>
+          <p id="stepCur"></p>
+        </div>
+      </div>
+
+    </div> <!-- metrics -->
+
+    <div id="devices">
+      <h1>Active Devices</h1>
+    </div>
+    {% endif %}
+  </body>
+  {% if client %}
+  <script src={{url_for('static', filename='script.js')}}></script>
+  {% endif %}
+</html>
