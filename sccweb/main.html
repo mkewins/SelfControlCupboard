@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+
+    <div id="input-container">
+      <input type='number' id='calInput' placeholder='Calories Burned'>
+    </div>
+    <div id="output-container">
+    </div>
+
+      <script>
+        // Firebase Reference
+        var dataRef = new Firebase('https://snackattack.firebaseio.com/');
+
+        var calField = $('#calInput');
+
+        // On enter, update Firebase with new value, clear input box
+        calField.keypress(function(event){
+          if(event.keyCode == 13){
+            var numCalories = calField.val();
+            dataRef.push({calories:numCalories});
+            calField.val('');
+          }
+        });
+
+        // Feedback
+        dataRef.on('child_added', function(snapshot) {
+          var data = snapshot.val();
+          var currentCalories = data.calories;
+          var showCurrent = $('<p>');
+          showCurrent.text(currentCalories)
+          $("#output-container").append(showCurrent)
+        });
+
+      </script>
+
+  </body>
+</html>
