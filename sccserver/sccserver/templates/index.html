@@ -2,11 +2,13 @@
 <html>  
   {% include 'head.html' %}  
   <body>
+    {% if not client %}
     <div id="fitbit-login">
       <a href='/auth'>
         <button type='button'>Login with Fitbit</button>
       </a>
     </div>
+    {% endif %}
 
     <div id="input-container">
       <h1>Set New Goal</h1>
