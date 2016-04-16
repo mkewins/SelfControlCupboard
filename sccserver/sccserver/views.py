@@ -2,14 +2,12 @@ from sccserver import app
 import fitbit, pprint
 from scripts.secrets import *
 from flask import redirect, request
-from firebase import firebase
 
 oauth = fitbit.FitbitOauth2Client(CLIENT_ID, CLIENT_SECRET)
 redirect_uri = 'http://localhost:1738/auth/callback'
 access_token = None
 refresh_token = None
 client = None
-ref = firebase.FirebaseApplication('https://snackattack.firebaseio.com', None)
 
 @app.route('/')
 def index():
@@ -33,11 +31,3 @@ def auth_callback():
     client = fitbit.Fitbit(CLIENT_ID, CLIENT_SECRET, access_token=access_token)
     return 'Success'
 
-def fitbit_steps():
-    # pull steps data from fitbit and push to firebase
-    if client is None:
-        return redirect('/auth')
-    stuff = client.activities()
-    steps = stuff['summary']['steps']
-    calories = stuff['summary']['calories']
-    firebase.put('/fitbit', {'steps': steps, 'calories': calories})
