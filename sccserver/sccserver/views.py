@@ -12,7 +12,7 @@ client = None
 @app.route('/')
 def index():
     # return "Hello world! <a href='/auth'>Login</a>"
-    return render_template('index.html')
+    return render_template('index.html', client=client)
 
 @app.route('/auth')
 def auth():
