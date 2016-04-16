@@ -13,11 +13,14 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *goalLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentGoalProgress;
+@property (weak, nonatomic) IBOutlet UILabel *calorieLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentCalorieProgress;
 @property (strong) HKHealthStore *healthStore;
 @property (strong) Firebase *myRootRef;
 
 @property NSMutableDictionary *healthData;
 @property HKQuantityType *stepCountType;
+@property HKSampleType *basalCalorieType;
 @end
 
 @implementation ViewController
@@ -25,16 +28,19 @@
 
 - (void)updateHealthData {
     __block NSInteger totalSteps = 0;
+    __block NSInteger totalCalories = 0;
+    __block NSDate *now = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY-MM-dd-HH:mm:ss"];
+    
     if ([HKHealthStore isHealthDataAvailable]) {
         self.healthStore = [[HKHealthStore alloc] init];
-        NSSet<HKSampleType*> *readTypes = [NSSet setWithObjects:_stepCountType, nil];
+        NSSet<HKSampleType*> *readTypes = [NSSet setWithObjects:_stepCountType, _basalCalorieType, nil];
         [_healthStore requestAuthorizationToShareTypes:nil readTypes:readTypes completion:^(BOOL success, NSError * _Nullable error) {
         }];
         NSCalendar *calendar = [NSCalendar currentCalendar];
         
-        __block NSDate *now = [NSDate date];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"YYYY-MM-dd-HH:mm:ss"];
+
         
         NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
         
@@ -57,22 +63,42 @@
                 [_currentGoalProgress setText:[NSString stringWithFormat:@"%ld", (long)totalSteps]];
                 [_healthData setObject:[NSNumber numberWithInteger:totalSteps] forKey:@"steps"];
                 [_myRootRef setValue:_healthData];
-                now = [NSDate date];
-                NSLog(@"Updated Firebase at: %@", [formatter stringFromDate:now]);
             });
         }];
         
         [_healthStore executeQuery:query];
         
+        query = [[HKSampleQuery alloc] initWithSampleType:_basalCalorieType predicate:predicate limit:HKObjectQueryNoLimit sortDescriptors:nil resultsHandler:^(HKSampleQuery *query, NSArray *results, NSError *error) {
+            if (!results) {
+                NSLog(@"An error occured fetching the user's calories. The error was: %@.", error);
+                return;
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                for (HKQuantitySample *sample in results) {
+                    totalCalories += [sample.quantity doubleValueForUnit:([HKUnit calorieUnit])];
+                }
+                totalCalories /= 1000;
+                [_currentCalorieProgress setText:[NSString stringWithFormat:@"%ld", (long)totalCalories]];
+                [_healthData setObject:[NSNumber numberWithInteger:totalCalories] forKey:@"calories"];
+                [_myRootRef setValue:_healthData];
+            });
+        }];
+        
+        [_healthStore executeQuery:query];
     }
+    now = [NSDate date];
+    NSLog(@"Updated Firebase at: %@", [formatter stringFromDate:now]);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"View loaded");
     
-     _stepCountType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    _stepCountType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
+    _basalCalorieType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierBasalEnergyBurned];
     [_goalLabel setText:@"Current steps:"];
+    [_calorieLabel setText:@"Current calories:"];
     _myRootRef = [[Firebase alloc] initWithUrl:@"https://snackattack.firebaseio.com/iphone"];
     _healthData = [[NSMutableDictionary alloc] init];
     [self updateHealthData];    
