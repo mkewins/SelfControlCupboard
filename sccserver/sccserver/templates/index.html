@@ -1,14 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <link rel="stylesheet" type="text/css" href={{url_for('static', filename='style.css')}}>
-  </head>
+<html>  
+  {% include 'head.html' %}  
   <body>
-
     <div id="fitbit-login">
-      <input type='button' id='fitbitBtn' value='Login with Fitbit'>
+      <button id='fitbitBtn' type='button'>Login with Fitbit</button>
     </div>
 
     <div id="input-container">
