@@ -7,7 +7,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(11,GPIO.OUT)
 p = GPIO.PWM(11,50)        #sets pin 11 to PWM and sends 50 signals per second
-p.start(2.5)
+#p.start(2.5)
 def lockDoor():
     	print 'LOCKING DOOR'
 	p.ChangeDutyCycle(7.5)
