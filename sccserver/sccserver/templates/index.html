@@ -8,8 +8,7 @@
         <button type='button'>Login with Fitbit</button>
       </a>
     </div>
-    {% endif %}
-
+    {% else %}
     <div id="input-container">
       <h1>Set New Goal</h1>
       <input type='number' id='calInput' placeholder='Calories'>
@@ -25,6 +24,9 @@
     <div id="devices">
       <h1>Active Devices</h1>
     </div>
+    {% endif %}
   </body>
+  {% if client %}
   <script src={{url_for('static', filename='script.js')}}></script>
+  {% endif %}
 </html>
