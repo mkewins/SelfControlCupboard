@@ -35,7 +35,7 @@ stepField.keypress(function(event){
 metricRef.on('child_changed', function(snapshot) {
   var data = snapshot.val();
   var name = snapshot.key();
-  console.log('name = ', name);
+  console.log(name, ' child changed to ', data);
   if (name == 'setCalories') {
     $("#calCur").html(data);
   } else if (name == 'setSteps') {
@@ -48,5 +48,22 @@ $(document).ready( function() {
   metricRef.once("value", function(data) {
     $("#calCur").html(data.child('setCalories').val());
     $("#stepCur").html(data.child('setSteps').val());
+    // By default, display calories
+    $('#calories-container').show();
+    $('#steps-container').hide();
   });
 });
+
+function showCalories(){
+  $('#calories-container').show();
+  $('#steps-container').hide();
+  // set active metric to calories
+  metricRef.child('activeMetric').set("calories", onComplete);
+}
+
+function showSteps(){
+  $('#steps-container').show();
+  $('#calories-container').hide();
+  // set active metric to steps
+    metricRef.child('activeMetric').set("steps", onComplete);
+}
