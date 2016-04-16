@@ -4,11 +4,11 @@ import time
 
 # Door control functions
 def lockDoor():
-    print 'LOCKING DOOR'
+    	print 'LOCKING DOOR'
 	p.ChangeDutyCycle(7.5)
 
 def unlockDoor():
-    print 'UNLOCKING DOOR'
+    	print 'UNLOCKING DOOR'
 	p.ChangeDutyCycle(2.5)
 
 
