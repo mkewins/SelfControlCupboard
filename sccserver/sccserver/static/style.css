@@ -13,7 +13,7 @@ body {
   background-color: #fff;
   height: 100%;
   font-family: 'Lato', sans-serif !important;
-  margin-top: 50px !important;
+  padding-top: 50px !important;
 }
 
 .splash-content {
@@ -54,12 +54,27 @@ button:hover {
   box-shadow:         1px 1px #ccc;
 }
 
+.btn {
+  background-color: #B1ABAB !important;
+  border-radius: 10px !important;
+  border: none !important;
+  -moz-box-shadow:    none;
+  -webkit-box-shadow: none;
+  box-shadow:         none;
+
+}
+
 .content-box {
   background-color: #F2F2F2;
   border-radius: 15px;
   padding: 1px 15px 15px 15px;
   box-shadow: 10px 10px #888888;
   margin-top: 30px;
+}
+
+.content-box-2 {
+  padding-bottom: 50px;
+
 }
 
 .title-bar {
@@ -74,4 +89,37 @@ button:hover {
   border: none;
 }
 
-input {}
+.device-chooser {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+}
+
+.btn-secondary {
+  background-color: white !important;
+  box-shadow: 3px 3px #888888;
+}
+
+input {
+  outline: none;
+}
+
+.progress-bar-container {
+  margin-top: 10px;
+  position: relative;;
+}
+
+.progress-back {
+  position: absolute;
+  padding: 5px;
+  border-radius: 7px;
+  background-color: #E08889;
+  width: 100%;
+  text-align: right;
+}
+.progress-front {
+  padding: 5px;
+  position: absolute;
+  border-radius: 7px;
+  background-color: #8CCB9F;
+}
