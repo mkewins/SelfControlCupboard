@@ -1,0 +1,125 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url(kitchen-bg.png);
+  background-repeat: no-repeat;;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  background-color: #fff;
+  height: 100%;
+  font-family: 'Lato', sans-serif !important;
+  padding-top: 50px !important;
+}
+
+.splash-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
+
+.main-title {
+  font-size: 10vw;
+  margin-bottom: 0;
+}
+
+.sub-title {
+  font-size: 3vw;
+  margin-top: 0;
+}
+
+button {
+  background-color: #F8EFF0;
+  border-radius: 12px;
+  font-size: 21px !important;
+  padding: 7px !important;
+  color: black !important;
+  border: none;
+  -moz-box-shadow:    3px 3px #ccc;
+  -webkit-box-shadow: 3px 3px #ccc;
+  box-shadow:         3px 3px #ccc;
+}
+
+button:focus { outline:none }
+
+button:hover {
+  background-color: #D8D8D8;
+  -moz-box-shadow:    1px 1px #ccc;
+  -webkit-box-shadow: 1px 1px #ccc;
+  box-shadow:         1px 1px #ccc;
+}
+
+.btn {
+  background-color: #B1ABAB !important;
+  border-radius: 10px !important;
+  border: none !important;
+  -moz-box-shadow:    none;
+  -webkit-box-shadow: none;
+  box-shadow:         none;
+
+}
+
+.content-box {
+  background-color: #F2F2F2;
+  border-radius: 15px;
+  padding: 1px 15px 15px 15px;
+  box-shadow: 10px 10px #888888;
+  margin-top: 30px;
+}
+
+.content-box-2 {
+  padding-bottom: 50px;
+
+}
+
+.title-bar {
+  background-color: #E0DEDF;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 14pt;
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+  line-height: 1;
+  border: none;
+}
+
+.device-chooser {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+}
+
+.btn-secondary {
+  background-color: white !important;
+  box-shadow: 3px 3px #888888;
+}
+
+input {
+  outline: none;
+}
+
+.progress-bar-container {
+  margin-top: 10px;
+  position: relative;;
+}
+
+.progress-back {
+  position: absolute;
+  padding: 5px;
+  border-radius: 7px;
+  background-color: #E08889;
+  width: 100%;
+  text-align: right;
+}
+.progress-front {
+  padding: 5px;
+  position: absolute;
+  border-radius: 7px;
+  background-color: #8CCB9F;
+}
