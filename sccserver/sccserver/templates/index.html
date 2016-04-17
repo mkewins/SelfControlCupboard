@@ -3,54 +3,64 @@
   {% include 'head.html' %}
   <body>
     {% if not client %}
-    <div id="fitbit-login" class="jumbotron text-center">
-      <h1>Self-Control Cupboard</h1>
-      <p class="lead">Resist your snack attack! Burn 3000 calories or walk 10000 steps if you wanna eat tonight &#x1F609;</p>
+    <div id="fitbit-login" class="text-center splash-content">
+      <h1 class="main-title">SNACKATTACK</h1>
+      <p class="sub-title">The Self Control Kitchen Cupboard</p>
       <a href='/auth'>
-        <button type='button'><h2>Login with Fitbit</h2></button>
+        <button type='button'>Login with Fitbit</button>
       </a>
     </div>
     {% else %}
-    <div id="input-container">
-      <h1>Set New Goal</h1>
-      <input type='number' id='calInput' placeholder='Calories'>
-      <input type='number' id='stepInput' placeholder='Steps'>
+    <div class="dropdown device-chooser">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="device-chooser" data-toggle="dropdown"></button>
+      <ul class="dropdown-menu">
+        <li onclick="changeActiveDevice('fitbit')"><a href="#">fitbit</a></li>
+        <li onclick="changeActiveDevice('iphone')"><a href="#">iphone</a></li>
+      </ul>
     </div>
-    <div id="metrics">
-
-      <h1>Metrics</h1>
-
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Metric
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li onclick="showCalories()"><a href="#">Calories</a></li>
-            <li onclick="showSteps()"><a href="#">Steps</a></li>
-          </ul>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="content-box">
+            <h2>Goal</h2>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle dropdown-title" type="button" id="dropdown-title" data-toggle="dropdown">Calories &#9660</button>
+              <ul class="dropdown-menu">
+                <li onclick="showCalories()"><a href="#">Calories</a></li>
+                <li onclick="showSteps()"><a href="#">Steps</a></li>
+              </ul>
+            </div>
+            <div id="calories-container">
+              <div class="title-bar">Current calorie goal:</div>
+              <div class="title-bar" id="calCur"></div>
+              <div class="title-bar">Set new goal:</div>
+              <input class="title-bar" type='number' id='calInput' placeholder='Calories'>
+            </div>
+            <div id="steps-container">
+              <div class="title-bar">Current step goal:</div>
+              <div class="title-bar" id="stepCur"></div>
+              <div class="title-bar">Set new goal:</div>
+              <input class="title-bar" type='number' id='stepInput' placeholder='Calories'>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="content-box content-box-2">
+            <h2>Status</h2>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle dropdown-title" type="button" id="dropdown-title" data-toggle="dropdown">Calories &#9660</button>
+              <ul class="dropdown-menu">
+                <li onclick="showCalories()"><a href="#">Calories</a></li>
+                <li onclick="showSteps()"><a href="#">Steps</a></li>
+              </ul>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-back"></div>
+              <div class="progress-front"></div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div id="calories-container">
-        <div>
-          <input type='number' id='calInput' placeholder='Calories'>
-        </div>
-        <div>
-          <p id="calCur"></p>
-        </div>
-      </div>
-
-      <div id="steps-container">
-        <div>
-          <input type='number' id='stepInput' placeholder='Steps'>
-        </div>
-        <div>
-          <p id="stepCur"></p>
-        </div>
-      </div>
-
-    </div> <!-- metrics -->
-
-    <div id="devices">
-      <h1>Active Devices</h1>
     </div>
     {% endif %}
   </body>
