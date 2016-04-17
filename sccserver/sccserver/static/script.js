@@ -56,6 +56,7 @@ $(document).ready( function() {
 
   // Highlight the active device
   deviceRef.once("value", function(data) {
+    var actoveDeviceName = data.child('activeDevice').val();
     var activeDevice = '#' + data.child('activeDevice').val();
     $(activeDevice).parent().addClass("active");
   });
@@ -63,12 +64,13 @@ $(document).ready( function() {
 
 
 $( ".changeDevice" ).click(function() {
-  deviceRef.child('activeDevice').set($(this).find('input').attr('id'));  
+  deviceRef.child('activeDevice').set($(this).find('input').attr('id'));
 });
 
 function showCalories(){
   $('#calories-container').show();
   $('#steps-container').hide();
+  $('#dropdown-title').html('Calories &#9660')
   // set active metric to calories
   metricRef.child('activeMetric').set("calories", onComplete);
 }
@@ -76,6 +78,7 @@ function showCalories(){
 function showSteps(){
   $('#steps-container').show();
   $('#calories-container').hide();
+  $('#dropdown-title').html('Steps &#9660')
   // set active metric to steps
     metricRef.child('activeMetric').set("steps", onComplete);
 }

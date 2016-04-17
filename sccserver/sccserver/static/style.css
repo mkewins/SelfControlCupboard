@@ -13,7 +13,7 @@ body {
   background-color: #fff;
   height: 100%;
   font-family: 'Lato', sans-serif !important;
-
+  margin-top: 50px !important;
 }
 
 .splash-content {
@@ -53,3 +53,25 @@ button:hover {
   -webkit-box-shadow: 1px 1px #ccc;
   box-shadow:         1px 1px #ccc;
 }
+
+.content-box {
+  background-color: #F2F2F2;
+  border-radius: 15px;
+  padding: 1px 15px 15px 15px;
+  box-shadow: 10px 10px #888888;
+  margin-top: 30px;
+}
+
+.title-bar {
+  background-color: #E0DEDF;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 14pt;
+  text-align: center;
+  margin-top: 15px;
+  width: 100%;
+  line-height: 1;
+  border: none;
+}
+
+input {}

@@ -11,6 +11,39 @@
       </a>
     </div>
     {% else %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="content-box">
+            <h2>Goal</h2>
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown-title" data-toggle="dropdown">Calories &#9660</button>
+                <ul class="dropdown-menu">
+                  <li onclick="showCalories()"><a href="#">Calories</a></li>
+                  <li onclick="showSteps()"><a href="#">Steps</a></li>
+                </ul>
+            </div>
+            <div id="calories-container">
+              <div class="title-bar">Current calorie goal:</div>
+              <div class="title-bar" id="calCur"></div>
+              <div class="title-bar">Set new goal:</div>
+              <input class="title-bar" type='number' id='calInput' placeholder='Calories'>
+            </div>
+            <div id="steps-container">
+              <div class="title-bar">Current step goal:</div>
+              <div class="title-bar" id="stepCur"></div>
+              <div class="title-bar">Set new goal:</div>
+              <input class="title-bar" type='number' id='stepInput' placeholder='Calories'>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="content-box">
+            <h2>Status</h2>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="input-container">
       <h1>Set New Goal</h1>
       <input type='number' id='calInput' placeholder='Calories'>
@@ -20,14 +53,7 @@
 
       <h1>Metrics</h1>
 
-      <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Metric
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li onclick="showCalories()"><a href="#">Calories</a></li>
-            <li onclick="showSteps()"><a href="#">Steps</a></li>
-          </ul>
-      </div>
+
 
       <div id="calories-container">
         <div>
