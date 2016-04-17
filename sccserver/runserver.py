@@ -39,4 +39,4 @@ scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
 
-app.run(host='0.0.0.0', debug=True, port=1738)
+app.run(host='0.0.0.0', debug=True, port=80)
