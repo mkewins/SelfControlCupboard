@@ -1,5 +1,1 @@
-@interface FirebaseServerValue : NSObject
-
-+ (NSDictionary *) timestamp;
-
-@end
+../../../Firebase/FirebaseServerValue.h

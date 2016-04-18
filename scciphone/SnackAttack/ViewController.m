@@ -15,6 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentGoalProgress;
 @property (weak, nonatomic) IBOutlet UILabel *calorieLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentCalorieProgress;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
+
 @property (strong) HKHealthStore *healthStore;
 @property (strong) Firebase *myRootRef;
 
@@ -38,9 +41,8 @@
         NSSet<HKSampleType*> *readTypes = [NSSet setWithObjects:_stepCountType, _basalCalorieType, nil];
         [_healthStore requestAuthorizationToShareTypes:nil readTypes:readTypes completion:^(BOOL success, NSError * _Nullable error) {
         }];
-        NSCalendar *calendar = [NSCalendar currentCalendar];
-        
 
+        NSCalendar *calendar = [NSCalendar currentCalendar];
         
         NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
         
@@ -95,10 +97,15 @@
     [super viewDidLoad];
     NSLog(@"View loaded");
     
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"LaunchImage"]]];
+
+    
     _stepCountType = [HKQuantityType quantityTypeForIdentifier:HKQuantityTypeIdentifierStepCount];
     _basalCalorieType = [HKSampleType quantityTypeForIdentifier:HKQuantityTypeIdentifierBasalEnergyBurned];
-    [_goalLabel setText:@"Current steps:"];
-    [_calorieLabel setText:@"Current calories:"];
+    [_goalLabel setText:@"Steps"];
+    [_calorieLabel setText:@"Calories"];
+    [_titleLabel setText:@"SNACKATTACK"];
+    [_subtitleLabel setText:@"The Self-Control Kitchen Cupboard"];
     _myRootRef = [[Firebase alloc] initWithUrl:@"https://snackattack.firebaseio.com/iphone"];
     _healthData = [[NSMutableDictionary alloc] init];
     [self updateHealthData];    
